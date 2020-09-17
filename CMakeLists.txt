@@ -6,7 +6,7 @@ project(KinesisVideoProducerC LANGUAGES C)
 # User Flags
 option(ADD_MUCLIBC "Add -muclibc c flag" OFF)
 option(BUILD_DEPENDENCIES "Whether or not to build depending libraries from source" ON)
-option(USE_OPENSSL "Use openssl as crypto library" ON)
+option(USE_OPENSSL "Use openssl as crypto library" OFF)
 option(USE_MBEDTLS "Use openssl as crypto library" OFF)
 option(BUILD_COMMON_LWS "Whether or not to build ProducerC libwebsockets common library" OFF)
 option(BUILD_COMMON_CURL "Whether or not to build ProducerC curl common library" ON)
@@ -71,7 +71,6 @@ if(BUILD_DEPENDENCIES)
 
   if (BUILD_COMMON_LWS)
     set(BUILD_ARGS  -DBUILD_STATIC=${BUILD_STATIC}
-                    -DOPENSSL_DIR=${OPEN_SRC_INSTALL_PREFIX}
                     -DUSE_OPENSSL=${USE_OPENSSL}
                     -DUSE_MBEDTLS=${USE_MBEDTLS})
     build_dependency(websockets ${BUILD_ARGS})
